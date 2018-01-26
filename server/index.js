@@ -1,4 +1,7 @@
+const cors = require("cors");
+
 const express = require("express");
+
 const bodyParser = require("body-parser");
 const app = express();
 
@@ -10,6 +13,7 @@ const GQL_PORT = process.env.PORT;
 // Where we will send all of our GraphQL requests
 
 // any request to graphql, parse then run through the schema handler
+app.use("*", cors());
 app.use("/graphql", bodyParser.json(), graphqlExpress({ schema }));
 
 // A route for accessing the GraphiQL tool

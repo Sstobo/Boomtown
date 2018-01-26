@@ -4,7 +4,7 @@ const GET_ITEMS_ERROR = "GET_ITEMS_ERROR";
 const ITEMS_URL = "http://localhost:4000/items";
 const USERS_URL = "http://localhost:4000/users";
 const FILTER_ITEMS = "FILTER_ITEMS";
-
+// port config
 export const getItemsLoading = () => ({
   type: GET_ITEMS_LOADING
 });

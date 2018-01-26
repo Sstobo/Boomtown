@@ -3,7 +3,7 @@ const GET_PROFILE = "GET_PROFILE";
 const GET_PROFILE_ERROR = "GET_PROFILE_ERROR";
 const ITEMS_URL = "http://localhost:4000/items";
 const USERS_URL = "http://localhost:4000/users";
-
+// port config
 const getProfileLoading = () => ({
   type: GET_PROFILE_LOADING
 });
