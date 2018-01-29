@@ -17,6 +17,22 @@ const resolveFunctions = {
       return fetch(`${ITEMS_URL}/${id}`).then(r => r.json());
     }
   },
+  Mutation: {
+    // save this new item in the database
+    // must return Item
+    addItem(root, { newItem: { title } }) {
+      return { title };
+    },
+
+    updateItem(root, { currentItem: { title } }) {
+      return { title };
+    },
+
+    borrowItem(root, { borrowedItem: { title } }) {
+      return { title };
+    }
+  },
+
   Item: {
     itemowner(item) {
       return fetch(`${USERS_URL}/${item.itemowner}`).then(r => r.json());

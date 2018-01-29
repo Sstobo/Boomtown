@@ -1,30 +1,39 @@
 import React, { Component } from "react";
 import Items from "./Items";
 import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { fetchItemsAndUsers } from "../../redux/modules/items";
+import { graphql } from "react-apollo";
+import gql from "graphql-tag";
 
 class ItemsContainer extends Component {
-  componentDidMount() {
-    this.props.dispatch(fetchItemsAndUsers());
-  }
-
   render() {
-    // if this.props.isLoading) return <Loader/>
-    // console.log(items);
-    return <Items items={this.props.itemsFilter} />;
+    const { loading, items } = this.props.data;
+    console.log(items);
+    return loading ? <p> Loading </p> : <Items items={items} />;
   }
 }
 
-ItemsContainer.propTypes = {
-  items: PropTypes.array.isRequired
-};
+const fetchItems = gql`
+  query {
+    items {
+      id
+      imageurl
+      title
+      created
+      itemowner {
+        id
+        fullname
+        email
+      }
+      itemurl
+      description
+      available
+      tags {
+        id
+        title
+      }
+    }
+  }
+`;
 
-const mapStateToProps = state => ({
-  isLoading: state.items.isLoading,
-  items: state.items.items,
-  error: state.items.error,
-  itemsFilter: state.items.itemsFilter
-});
-
-export default connect(mapStateToProps)(ItemsContainer);
+export default graphql(fetchItems)(ItemsContainer);
+// export default connect(mapStateToProps)(ItemsContainer);

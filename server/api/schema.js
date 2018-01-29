@@ -9,13 +9,14 @@ const typeDefs = `
 
     type User {
       id: ID
-      name: String
       email: String
+      fullname: String
       shareditems: [Item]
     }
 
     type Item {
       id: ID
+      created: String
       imageurl: String
       title: String
       itemowner: User
@@ -25,7 +26,36 @@ const typeDefs = `
       available: Boolean
       tags: [Tag]
     }  
-       
+    
+    input TagInput {
+      id: ID
+      title: String
+    }
+    input updateItemInput {
+      title: String
+      description: String
+    }
+    input AddItemInput {
+      imageurl: String
+      title: String
+      description: String
+      tags: [TagInput]
+    }
+    input updateBorrower {
+      available: Boolean  
+      borrower: String
+    }
+
+
+    type AddItemReturn {
+      title: String
+    }
+
+    type Mutation {
+      addItem (newItem : AddItemInput): Item
+      updateItem (currentItem: updateItemInput): Item
+      borrowItem(borrowedItem: updateBorrower): Item
+    }
     type Query {
       item(id:ID): Item
       items: [Item]
@@ -33,7 +63,9 @@ const typeDefs = `
       users: [User]
     }
 `;
-
+// add borrowitem same way
+// when sending information define input type
+// any mutation needs an input type, so addItem( what youre making, what it should look like)
 module.exports = makeExecutableSchema({
   typeDefs,
   resolvers

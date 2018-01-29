@@ -11,9 +11,8 @@ const schema = require("./api/schema");
 // process is from node
 const GQL_PORT = process.env.PORT;
 // Where we will send all of our GraphQL requests
-
-// any request to graphql, parse then run through the schema handler
 app.use("*", cors());
+// any request to graphql, parse then run through the schema handler
 app.use("/graphql", bodyParser.json(), graphqlExpress({ schema }));
 
 // A route for accessing the GraphiQL tool
@@ -24,5 +23,5 @@ app.use(
   })
 );
 app.listen(GQL_PORT, () =>
-  console.log(`GraphQL is now running on http://localhost:${GQL_PORT}/graphiql`)
+  console.log(`GraphQL is now running on http://localhost:${GQL_PORT}/graphql`)
 );
