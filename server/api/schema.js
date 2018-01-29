@@ -12,6 +12,7 @@ const typeDefs = `
       email: String
       fullname: String
       shareditems: [Item]
+      items: [Item]
     }
 
     type Item {
@@ -54,7 +55,7 @@ const typeDefs = `
     type Mutation {
       addItem (newItem : AddItemInput): Item
       updateItem (currentItem: updateItemInput): Item
-      borrowItem(borrowedItem: updateBorrower): Item
+      borrowItem (borrowedItem: updateBorrower): Item
     }
     type Query {
       item(id:ID): Item

@@ -51,7 +51,10 @@ const resolveFunctions = {
       return theItem.tags;
     }
   },
-  User: {
+    User: {
+      // items: (user, args, context) => {
+      //   return context.loaders.UserOwnedItems.load(user.id);
+      // },
     shareditems(user) {
       return fetch(`${ITEMS_URL}/?itemowner=${user.id} `).then(r => r.json());
     }
