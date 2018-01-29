@@ -7,7 +7,7 @@ import gql from "graphql-tag";
 class ItemsContainer extends Component {
   render() {
     const { loading, items } = this.props.data;
-    console.log(items);
+    console.log("items to be passed to itemcards: " , items);
     return loading ? <p> Loading </p> : <Items items={items} />;
   }
 }

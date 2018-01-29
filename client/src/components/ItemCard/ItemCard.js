@@ -14,6 +14,7 @@ import {
 
 const ItemCard = ({ item }) => (
   <div>
+    
     <Card>
       {item.borrower ? (
         <CardMedia
@@ -49,9 +50,9 @@ const ItemCard = ({ item }) => (
           primary={false}
           style={{ marginLeft: "0" }}
         />
+        
       </CardActions>
     </Card>
   </div>
 );
-
 export default ItemCard;

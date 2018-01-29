@@ -18,6 +18,7 @@ const getProfileError = error => ({
   payload: error
 });
 
+console.log("filter.js running")
 export const fetchItemsAndUsers = userid => dispatch => {
   dispatch(getProfileLoading());
 

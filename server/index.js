@@ -8,7 +8,7 @@ const { graphqlExpress, graphiqlExpress } = require("apollo-server-express");
 const schema = require("./api/schema");
 const GQL_PORT = process.env.PORT;
 
-// const createLoaders = require('./api/loaders');
+const createLoaders = require('./api/loaders');
 
 
 // app.use('/graphql', bodyParser.json(), graphqlExpress({

@@ -19,12 +19,18 @@ export class HeaderBar extends React.Component {
   }
 
   handleChange = (event, index, values) => {
+    console.log("change")
+   
     this.props.dispatch(filterItems(values, this.props.items));
+      console.log("Values in headerbar: " , values)
+        console.log("this.props in headerbar: ", this.props.items)
     this.setState({ values });
+        console.log("{value} in headerbar ",{values})
   };
 
   render() {
     const { values } = this.state;
+    console.log("rendered state:", this.state)
     return (
       <Toolbar
         style={{
@@ -116,5 +122,5 @@ const mapStateToProps = state => ({
   itemsFilter: state.items.itemFilter,
   error: state.items.error
 });
-
+console.log("mapstate to props: " ,mapStateToProps)
 export default connect(mapStateToProps)(HeaderBar);

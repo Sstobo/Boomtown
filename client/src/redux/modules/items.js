@@ -31,9 +31,11 @@ export const filteredItems = (tags, items) => {
   } else {
     let result = [];
     items.forEach(item => {
+    
       tags.forEach(tag => {
         if (item.tags.map(tag => tag.title).indexOf(tag) > -1) {
           result.push(item);
+          console.log(item)
         }
       });
     });
