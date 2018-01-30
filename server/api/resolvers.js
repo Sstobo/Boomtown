@@ -1,8 +1,10 @@
 const fetch = require("node-fetch");
-const ITEMS_URL = "http://localhost:4000/items";
-const USERS_URL = "http://localhost:4000/users";
 
-const resolveFunctions = {
+module.exports = app => {
+  const ITEMS_URL = `http://localhost:${app.get('JSON_PORT')}/items`;
+  const USERS_URL =  `http://localhost:${app.get('JSON_PORT')}/users`;
+  return {
+ 
   Query: {
     items() {
       return fetch(ITEMS_URL).then(r => r.json());
@@ -59,6 +61,6 @@ const resolveFunctions = {
       return fetch(`${ITEMS_URL}/?itemowner=${user.id} `).then(r => r.json());
     }
   }
+}
 };
 
-module.exports = resolveFunctions;

@@ -1,6 +1,4 @@
-const { makeExecutableSchema } = require("graphql-tools");
-const resolvers = require("./resolvers"); // Next step!
-const typeDefs = `
+module.exports = `
   
     type Tag {
       id: ID
@@ -64,10 +62,4 @@ const typeDefs = `
       users: [User]
     }
 `;
-// add borrowitem same way
-// when sending information define input type
-// any mutation needs an input type, so addItem( what youre making, what it should look like)
-module.exports = makeExecutableSchema({
-  typeDefs,
-  resolvers
-});
+

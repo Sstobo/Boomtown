@@ -9,7 +9,7 @@
     "json-server": "json-server --watch ../server/db.json --port 4000",
     "dev": "concurrently \"react-scripts start\" \"",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "PORT=4001 nodemon index.js"
+    "start": " nodemon index.js"
   },
   "author": "",
   "license": "ISC",
