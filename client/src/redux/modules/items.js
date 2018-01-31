@@ -35,7 +35,7 @@ export const filteredItems = (tags, items) => {
       tags.forEach(tag => {
         if (item.tags.map(tag => tag.title).indexOf(tag) > -1) {
           result.push(item);
-          console.log(item)
+
         }
       });
     });
