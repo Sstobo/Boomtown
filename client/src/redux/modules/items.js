@@ -56,10 +56,11 @@ export const fetchItemsAndUsers = () => dispatch => {
 
       const combined = itemsList.map(item => {
         item.itemowner = usersList.find(user => user.id === item.itemowner);
-
+       
         if (item.borrower) {
           item.borrower = usersList.find(user => user.id === item.borrower);
         }
+       
         return item;
       });
 

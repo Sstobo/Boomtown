@@ -1,35 +1,32 @@
-const fetch = require("node-fetch");
+// where the commands live
+module.exports = ({
+  jsonResource: { getUser, getUsers},
+  postgresResource: { getItem, getItems, getTags  }
 
-module.exports = app => {
-  const ITEMS_URL = `http://localhost:${app.get('JSON_PORT')}/items`;
-  const USERS_URL =  `http://localhost:${app.get('JSON_PORT')}/users`;
-  return {
- 
+}) => {
+  
+ return {
   Query: {
     items() {
-      return fetch(ITEMS_URL).then(r => r.json());
+      return getItems();
     },
     users() {
-      return fetch(USERS_URL).then(r => r.json());
+      return  getUsers();
     },
     user(root, { id }) {
-      return fetch(`${USERS_URL}/${id}`).then(r => r.json());
+     return getUser(id);
     },
     item(root, { id }) {
-      return fetch(`${ITEMS_URL}/${id}`).then(r => r.json());
+      return getItem(id);
     }
   },
   Mutation: {
-    // save this new item in the database
-    // must return Item
     addItem(root, { newItem: { title } }) {
       return { title };
     },
-
     updateItem(root, { currentItem: { title } }) {
       return { title };
     },
-
     borrowItem(root, { borrowedItem: { title } }) {
       return { title };
     }
@@ -37,20 +34,19 @@ module.exports = app => {
 
   Item: {
     itemowner(item) {
-      return fetch(`${USERS_URL}/${item.itemowner}`).then(r => r.json());
+     return getUser(item.itemowner);
     },
     borrower(item) {
       if (item.borrower) {
-        return fetch(`${USERS_URL}/${item.borrower}`).then(r => r.json());
+       return getUser(item.borrower)
       } else {
         return null;
       }
     },
-    async tags(item) {
-      const theItem = await fetch(`${ITEMS_URL}/${item.id} `).then(r =>
-        r.json()
-      );
-      return theItem.tags;
+    tags(item) {
+      return getTags(item.id);
+      // const theItem = await getItem(item.id);
+      // return theItem.tags;
     }
   },
     User: {
@@ -58,9 +54,8 @@ module.exports = app => {
         return context.loaders.UserOwnedItems.load(user.id);
       },
     shareditems(user) {
-      return fetch(`${ITEMS_URL}/?itemowner=${user.id} `).then(r => r.json());
+      return sharedItems(user.id);
     }
   }
 }
-};
-
+}
