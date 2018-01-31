@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import Items from "./Items";
 import PropTypes from "prop-types";
-import { graphql } from "react-apollo";
+import { graphql, compose } from "react-apollo";
 import gql from "graphql-tag";
-
+import { connect } from "react-redux";
 class ItemsContainer extends Component {
   render() {
     const { loading, items } = this.props.data;
@@ -34,6 +34,14 @@ const fetchItems = gql`
     }
   }
 `;
+const mapStateToProps = state => ({
+  isLoading: state.items.isLoading,
+  items: state.items.items,
+  tags: state.items.tags,
+  itemsFilter: state.items.itemFilter,
+  error: state.items.error
+});
 
-export default graphql(fetchItems)(ItemsContainer);
-// export default connect(mapStateToProps)(ItemsContainer);
+export default compose(graphql(fetchItems), connect(mapStateToProps))(
+  ItemsContainer
+);

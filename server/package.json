@@ -9,7 +9,7 @@
     "json-server": "json-server --watch ../server/db.json --port 4000",
     "dev": "concurrently \"react-scripts start\" \"",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "PORT=4001 nodemon index.js"
+    "start": " nodemon index.js"
   },
   "author": "",
   "license": "ISC",
@@ -26,6 +26,7 @@
     "material-ui": "^0.19.2",
     "moment": "^2.20.1",
     "node-fetch": "^1.7.3",
+    "pg": "^7.4.1",
     "prop-types": "^15.6.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
