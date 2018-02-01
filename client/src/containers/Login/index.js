@@ -1,4 +1,4 @@
-import LoginContainer from './Login';
+import LoginContainer from './LoginContainer';
 import Login from './Login';
 
 export { Login };

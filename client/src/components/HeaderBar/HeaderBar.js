@@ -122,5 +122,4 @@ const mapStateToProps = state => ({
   itemsFilter: state.items.itemFilter,
   error: state.items.error
 });
-console.log("mapstate to props: " ,mapStateToProps)
 export default connect(mapStateToProps)(HeaderBar);

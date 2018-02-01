@@ -7,26 +7,48 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./index.css";
 import muiTheme from "./config/theme";
 
+import PrivateRoute from "./components/PrivateRoute"
 import Layout from "./components/Layout";
 import Login from "./containers/Login";
 import Profile from "./containers/Profile";
 import Items from "./containers/Items";
+
 import { Provider } from "react-redux";
 import { ApolloProvider } from "react-apollo";
-
+import { firebaseApp, firebaseAuth} from "./config/firebaseConfig"
 import { client } from "./config/apolloClient";
+import { updateAuthState, userLoading } from './redux/modules/auth'
+
+
+let gotProfile = false;
+store.subscribe(() => {
+  const values = store.getState();
+  if (values.auth.authenticated === 'LOADING_USER' && !gotProfile) {
+    gotProfile = true;
+    store.dispatch(userLoading(false));
+  }
+});
+
+firebaseAuth.onAuthStateChanged(user => {
+  if (user) {
+    store.dispatch(updateAuthState(user))
+  } else {
+    store.dispatch(updateAuthState(false))
+  }
+});
 
 const Boomtown = () => (
   <MuiThemeProvider muiTheme={muiTheme}>
     <ApolloProvider client={client}>
       <Provider store={store}>
         <Router>
+       
           <div>
-            <Route exact path="/login" component={Login} />
             <Layout>
-              <Switch>
-                <Route exact path="/" component={Items} />
-                <Route exact path="/profile/:userid" component={Profile} />
+              <Switch> 
+              <Route exact path="/login" component={Login} />
+              <PrivateRoute exact path="/" component={Items} />
+                <PrivateRoute exact path="/profile/:userid" component={Profile} />
 
                 {/* <Route exact path="/share" component={} /> */}
               </Switch>

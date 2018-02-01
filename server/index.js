@@ -51,7 +51,24 @@ function start(postgresResource) {
     schema
   }));
 
-  // A route for accessing the GraphiQL tool
+  const schema = makeExecutableSchema({
+    typeDefs,
+    resolvers: initResolvers({
+      jsonResource,
+      postgresResource
+    })
+  });
+
+
+  // app.use('/graphql', bodyParser.json(), graphqlExpress({
+  //   schema,
+  //   context: { loaders: createLoaders() }
+  // }));
+
+  app.use("*", cors());
+  app.use("/graphql", bodyParser.json(), graphqlExpress({
+    schema
+  }));
   app.use(
     "/graphiql",
     graphiqlExpress({
