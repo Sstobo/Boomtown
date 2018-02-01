@@ -1,8 +1,13 @@
 const cors = require("cors");
 const express = require("express");
 const bodyParser = require("body-parser");
-const { graphqlExpress, graphiqlExpress } = require("apollo-server-express");
-const {makeExecutableSchema} = require("graphql-tools");
+const {
+  graphqlExpress,
+  graphiqlExpress
+} = require("apollo-server-express");
+const {
+  makeExecutableSchema
+} = require("graphql-tools");
 
 const config = require('./config');
 const createLoaders = require('./api/loaders');
@@ -20,31 +25,31 @@ postgresResource(app).then(pgResource => start(pgResource));
 
 function start(postgresResource) {
 
-const schema = makeExecutableSchema({
-  typeDefs,
-  resolvers: initResolvers({
-    jsonResource,
-    postgresResource
-})
-});
+  const schema = makeExecutableSchema({
+    typeDefs,
+    resolvers: initResolvers({
+      jsonResource,
+      postgresResource
+    })
+  });
 
 
-// app.use('/graphql', bodyParser.json(), graphqlExpress({
-//   schema,
-//   context: { loaders: createLoaders() }
-// }));
+  // app.use('/graphql', bodyParser.json(), graphqlExpress({
+  //   schema,
+  //   context: { loaders: createLoaders() }
+  // }));
 
-app.use("*", cors());
-app.use("/graphql", bodyParser.json(), graphqlExpress({ schema }));
-
-// A route for accessing the GraphiQL tool
-app.use(
-  "/graphiql",
-  graphiqlExpress({
-    endpointURL: "/graphql"
-  })
-);
-app.listen(app.get('PORT'), () =>
-  console.log(`http://localhost:${app.get('PORT')}/items`)
-);
+  app.use("*", cors());
+  app.use("/graphql", bodyParser.json(), graphqlExpress({
+    schema
+  }));
+  app.use(
+    "/graphiql",
+    graphiqlExpress({
+      endpointURL: "/graphql"
+    })
+  );
+  app.listen(app.get('PORT'), () =>
+    console.log(`http://localhost:${app.get('PORT')}/items`)
+  );
 };
