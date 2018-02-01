@@ -1,10 +1,11 @@
 // where the commands live
 module.exports = ({
+  // commands for each resource
   jsonResource: { getUser, getUsers},
   postgresResource: { getItem, getItems, getTags  }
 
 }) => {
-  
+  // all commands exist within the resources. They are collected here. 
  return {
   Query: {
     items() {

@@ -1,6 +1,10 @@
 const { Client } = require('pg')
 
+// 
 module.exports = async app => {
+
+// Client is a function of postgress. We name it 'client once instantiated with all of our 
+// configurations
 
 const client = new Client({
   user: app.get('PGUSER'),
@@ -8,11 +12,12 @@ const client = new Client({
   database: app.get('PGDATABASE'),
   password: app.get('PGPASSWORD'),
   port: app.get('PGPORT')
-})
-
+  })
+// this waits for client to connect with the server
 await client.connect()
 
-
+// these commands do a client.query (method of PG). The query is simply a SQL command to get 
+// what we want 
   return {
     getItems() {
       console.log("hey bro dont quit now, your a star!")
@@ -22,6 +27,8 @@ await client.connect()
         })
       })
     },
+
+    // pass in args if needed in command line
     getItem(id) {
       return new Promise((resolve, reject) => {
         client.query('SELECT * FROM items WHERE id = $1', [id], (err, res) => {

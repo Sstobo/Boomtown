@@ -1,6 +1,7 @@
 
 module.exports = app => {
-// postgres config
+// this calibrates the database in terminal
+
   app.set('PGUSER', process.env.PGUSER || 'boomtowndb');
   app.set('PGPASSWORD', process.env.PGPASSWORD || 'boomtowndb');
   app.set('PGDATABASE', process.env.PGDATABASE || 'boomtowndb');
