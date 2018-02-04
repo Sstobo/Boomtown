@@ -184,6 +184,10 @@ body {
     margin-bottom: 28px;
 }
 
+.list-container {
+    padding: 54px;
+}
+
 .header-bar {
     background-color: white !important;
     height: 160px !important;
@@ -218,7 +222,7 @@ body {
 }
 
 .paper-right {
-    width: 40%;
+    width: 30%;
     height: 80%;
 }
 
@@ -236,17 +240,19 @@ p {
     text-align: center;
     color: black !important;
 }
+
 .share-card {
     width: 60%;
     height: 80%;
     margin: 0 auto
-
 }
+
 .left-card {
     width: 50%;
-    height: 600px;
+    height: 700px;
     margin-top: 66px;
 }
+
 .share-wrapper {
     display: flex;
     width: 100%;
@@ -254,9 +260,11 @@ p {
     justify-content: center;
     align-items: center;
 }
+
 .image-404 {
     width: 100%;
 }
+
 @media only screen and (min-width: 600px) {
     .header-bar {
         height: 60px !important;

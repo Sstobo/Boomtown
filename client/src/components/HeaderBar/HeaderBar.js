@@ -5,10 +5,19 @@ import FontIcon from "material-ui/FontIcon";
 import MenuItem from "material-ui/MenuItem";
 import SelectField from "material-ui/SelectField";
 import RaisedButton from "material-ui/RaisedButton";
+import { firebaseAuth } from "../../config/firebaseConfig";
 import { Toolbar, ToolbarGroup, ToolbarSeparator } from "material-ui/Toolbar";
 import { filterItems } from "../../redux/modules/items";
 
+import firebase from "firebase";
+
+
+
 export class HeaderBar extends React.Component {
+  logOut = e => {
+		e.preventDefault();
+		firebase.auth().signOut();
+	};
   constructor(props) {
     super(props);
 
@@ -29,6 +38,7 @@ export class HeaderBar extends React.Component {
   };  
 
   render() {
+    const userProfile = firebaseAuth.currentUser.uid;
     const { values } = this.state;
     console.log("rendered state:", this.state)
     return (
@@ -98,18 +108,18 @@ export class HeaderBar extends React.Component {
         <ToolbarGroup>
           <FontIcon className="muidocs-icon-custom-sort" />
           <ToolbarSeparator />
-          <Link to="/login">
-            <RaisedButton label="Log out" primary={true} />
+        
+          <Link to={`/profile/${userProfile}`}>
+          	<RaisedButton label="My Profile" primary />  
           </Link>
-          <Link to="/profile">
-            <RaisedButton
-              label="Profile"
-              backgroundColor="#263238"
-              labelColor="#fff"
-              primary={false}
-              style={{ marginLeft: "24px" }}
-            />
-          </Link>
+          
+          <RaisedButton
+							className="navbar-logout-button"
+							label="Logout"
+							backgroundColor="#263238"
+							labelColor="#fff"
+							onClick={this.logOut}
+						/>
         </ToolbarGroup>
       </Toolbar>
     );

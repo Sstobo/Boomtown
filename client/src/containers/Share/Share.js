@@ -135,7 +135,7 @@ class Share extends React.Component {
 										onChange={this.handleImageUpload}
 										hidden
 										id="imageInput"
-									/>
+									/>	
 								</RaisedButton>
 								{this.renderStepActions(0)}
 							</StepContent>

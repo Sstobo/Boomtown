@@ -23,16 +23,24 @@ const Profile = ({ list, user }) => {
         children={
           <div className="paper-wrap">
             <div className="paper-left">
-              <h1> {list[0] && list[0].itemowner.fullname}</h1>
-              <p> {list[0] && list[0].itemowner.bio}</p>
+            <h1>{user.fullname}</h1>
+							<p>{user.bio}</p>
             </div>
             <div className="paper-right">
-              <Gravatar
+
+							<div>
+								<p>{list.length}</p>
+								<p>Items shared</p>
+								<p>{user.shareditems.length}</p>
+								<p>Items borrowed</p>{" "}
+							</div>
+              
+            </div>
+            <Gravatar
                 size={180}
                 className="gravatar"
                 email={list[0] && list[0].itemowner.email}
               />
-            </div>
           </div>
         }
       />
