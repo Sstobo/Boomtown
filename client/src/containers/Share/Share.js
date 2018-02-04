@@ -98,22 +98,22 @@ class Share extends React.Component {
 		return (
 			<div>
 				<div>
-					<Card className="card">
+					<Card className="share-card">
 						<CardMedia className="card-media">
 							<img src={Placeholder} alt="placeholder for uploaded photo" />
 						</CardMedia>
 
 						<CardHeader
-							title="Usery McUserface"
+							title="Generic User"
 							subtitle="Moment(item.created).fromNow()"
 							avatar={
 								<Gravatar className="photo" email="item.itemowner.email" />
 							}
 						/>
 
-						<CardTitle title="Amazing Item Title" />
+						<CardTitle title="Item Title" />
 
-						<CardText>Profound item description.</CardText>
+						<CardText>Item Description</CardText>
 					</Card>
 				</div>
 
@@ -123,8 +123,7 @@ class Share extends React.Component {
 							<StepLabel>Add an Image</StepLabel>
 							<StepContent>
 								<p>
-									We live in a visual culture. Upload an image of the item
-									you're sharing
+									Image Upload
 								</p>
 								<RaisedButton
 									label="Select an Image"
