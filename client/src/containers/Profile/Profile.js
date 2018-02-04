@@ -40,9 +40,9 @@ const Profile = ({ list, user }) => {
       <div className={"list-container"}>
         <Masonry>
           {list.map(item => (
-            <li key={item.id} className={"single-item"}>
+            <div key={item.id} className={"single-item"}>
               <ItemCard item={item} key={item.id} />
-            </li>
+            </div>
           ))}
         </Masonry>
         </div>
