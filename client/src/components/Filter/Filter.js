@@ -12,7 +12,7 @@ class FilterMenu extends Component {
 
 	handleChange = (event, index, values) => {
 		this.setState({ values });
-		this.props.dispatch(getFilters(values)); 
+		this.props.dispatch(Filters(values)); 
 	};
 
 	menuItems(values) {
