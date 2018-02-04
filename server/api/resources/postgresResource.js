@@ -13,6 +13,7 @@ module.exports = async app => {
   await client.connect();
 
   return {
+    
     getSharedItems(userid) {
       return new Promise((resolve, reject) => {
         client.query(
@@ -25,6 +26,7 @@ module.exports = async app => {
       });
     },
 
+
     getItems() {
       return new Promise((resolve, reject) => {
         client.query("SELECT * from items", (err, data) => {
@@ -33,6 +35,8 @@ module.exports = async app => {
         });
       });
     },
+
+
     getItem(id) {
       return new Promise((resolve, reject) => {
         client.query("SELECT * from items WHERE id = $1", [id], (err, data) => {
@@ -41,6 +45,8 @@ module.exports = async app => {
         });
       });
     },
+
+
     getTags(id) {
       return new Promise((resolve, reject) => {
         client.query(
@@ -55,6 +61,8 @@ module.exports = async app => {
         );
       });
     },
+
+
     async createItem({ title, description, imageurl, itemowner, tags }) {
       const itemValues = [title, description, imageurl, itemowner];
 
@@ -64,6 +72,7 @@ module.exports = async app => {
 
       try {
         await client.query("BEGIN");
+
         const itemResult = await client.query(itemInsertQuery, itemValues);
         const tagsInsertQuery = `INSERT INTO itemtags(itemid, tagid) VALUES 
         ${tq(tags)}`;
@@ -71,6 +80,7 @@ module.exports = async app => {
         await client.query(tagsInsertQuery, [itemResult.rows[0].id, ...tags]);
 
         await client.query("COMMIT");
+        
         return itemResult.rows[0];
       } catch (e) {
         await client.query("ROLLBACK");

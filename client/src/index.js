@@ -29,6 +29,9 @@ store.subscribe(() => {
   }
 });
 
+
+
+
 firebaseAuth.onAuthStateChanged(user => {
   if (user) {
     store.dispatch(updateAuthState(user))
@@ -42,15 +45,14 @@ const Boomtown = () => (
     <ApolloProvider client={client}>
       <Provider store={store}>
         <Router>
-       
           <div>
             <Layout>
               <Switch> 
-              <Route exact path="/login" component={Login} />
-              <PrivateRoute exact path="/" component={Items} />
-              <PrivateRoute exact path="/profile/:userid" component={Profile} />
-
-                {/* <Route exact path="/share" component={} /> */}
+              <Route exact path="/" component={Login} />
+              <PrivateRoute exact path="/items" component={Items} />
+              <PrivateRoute exact path="/share" component={Share} />
+              <PrivateRoute exact path="/profile/:id" component={Profile} />
+              <PrivateRoute exact path="*" component={NotFound} />
               </Switch>
             </Layout>
           </div>

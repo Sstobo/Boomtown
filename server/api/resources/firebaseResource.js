@@ -11,13 +11,16 @@ module.exports = app => {
       let users = await db.ref("users").once("value");
       users = users.val();
       const userList = [];
+      
       for (userid in users) {
         userList.push({
+
           id: userid,
           bio: users[userid].bio,
           email: users[userid].email,
           fullname: users[userid].fullname,
           imageurl: users[userid].imageurl
+
         });
       }
       return userList;

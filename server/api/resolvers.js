@@ -6,8 +6,6 @@ module.exports = ({
   return {
     Query: {
       items() {
-      
-
         return getItems();
       },
       user(root, { id }) {

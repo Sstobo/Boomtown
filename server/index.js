@@ -1,5 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const { graphqlExpress, graphiqlExpress } = require("apollo-server-express");
 const app = express();
 const cors = require("cors");
 const createLoaders = require("./api/loaders");
@@ -7,8 +8,6 @@ const { makeExecutableSchema } = require("graphql-tools");
 const typeDefs = require("./api/schema");
 const config = require("./config");
 const initResolvers = require("./api/resolvers");
-
-const { graphqlExpress, graphiqlExpress } = require("apollo-server-express");
 
 config(app);
 
@@ -22,15 +21,12 @@ function start(psgResource) {
   const schema = makeExecutableSchema({
     typeDefs,
     resolvers: initResolvers({
-  
       psgResource,
       firebaseResource
     })
   });
 
-
   app.use("*", cors());
-
 
   app.use("/graphql", bodyParser.json(), graphqlExpress({ schema }));
 
