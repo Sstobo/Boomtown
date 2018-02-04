@@ -31,7 +31,7 @@ export class HeaderBar extends React.Component {
     console.log("change")
    
     this.props.dispatch(filterItems(values, this.props.items));
-      console.log("Values in headerbar: " , values)
+      
         console.log("this.props in headerbar: ", this.props.items)
     this.setState({ values });
         console.log("{value} in headerbar ",{values})

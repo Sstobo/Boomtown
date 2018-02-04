@@ -24,7 +24,12 @@ import TextField from "material-ui/TextField";
 class Share extends React.Component {
 	state = {
 		finished: false,
-		stepIndex: 0
+		stepIndex: 0,
+		newtitle: "Placeholder Text",
+		newDescription: "Placeholder description",
+		newImage: "",
+		newTags: []
+		
 	};
 
 	handleNext = () => {
@@ -84,6 +89,7 @@ class Share extends React.Component {
 		task
 			.then(snapshot => {
 				const url = snapshot.downloadURL;
+				this.setState( {newImage: url})
 				console.log(url);
 				document.querySelector("#someImageTagID").src = url;
 			})
@@ -93,14 +99,21 @@ class Share extends React.Component {
 	};
 
 	render() {
-		const { finished, stepIndex } = this.state;
+		const { 
+			newtitle,
+			newDescription,
+			newImage,
+			newTags,	
+			finished, 
+			stepIndex } = this.state;
 
 		return (
 			<div className="share-wrapper">
 				<div className="left-card">
 					<Card className="share-card">
 						<CardMedia className="card-media">
-							<img src={Placeholder} alt="placeholder for uploaded photo" />
+							<img src={newImage ? newImage : Placeholder}
+							 alt="placeholder for uploaded photo" />
 						</CardMedia>
 
 						<CardHeader

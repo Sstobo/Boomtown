@@ -111,8 +111,12 @@ export default (
         isLoading: false,
         tags: action.payload.tags,
         items: action.payload.items,
-        itemsFilter: filtered
+        itemsFilter: filtered,
+        
+        
+      
       };
+      console.log("filter" , this.state.itemsFilter)
     }
     default:
       return state;
