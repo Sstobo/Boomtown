@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import CircularProgress from "material-ui/CircularProgress";
 import ItemCardList from "../../components/ItemCardList";
+import ItemCard from "../../components/ItemCard";
 import Gravatar from "react-gravatar";
 import Paper from "material-ui/Paper";
 import PropTypes from "prop-types";
@@ -30,7 +31,7 @@ const Profile = ({ list, user }) => {
               <Gravatar
                 size={180}
                 className="gravatar"
-                email={items[0] && items[0].itemowner.email}
+                email={list[0] && list[0].itemowner.email}
               />
             </div>
           </div>
