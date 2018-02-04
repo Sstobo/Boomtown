@@ -28,6 +28,7 @@ const fetchItems = gql`
       available
       borrower {
         id
+        fullname
       }
       tags {
         id
