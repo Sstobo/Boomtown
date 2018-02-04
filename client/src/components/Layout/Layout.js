@@ -11,7 +11,7 @@ const Layout = ({ children, userLoading, authenticated }) => (
   userLoading ? "Loading..." :
   <div className="appContentWrapper">
   
-
+    
     <div className="appHeader">
 
 { authenticated && <HeaderBar /> }
