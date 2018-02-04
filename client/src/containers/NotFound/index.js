@@ -1,3 +1,8 @@
-import NotFoundContainer from './NotFound'
+import React, { Component } from 'react';
 
-export default NotFoundContainer;
+
+export default class NotFound extends Component {
+  render () {
+    return <div> Not Found Container</div>
+  }
+}

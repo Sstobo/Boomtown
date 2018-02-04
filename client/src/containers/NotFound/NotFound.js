@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import './styles.css'
-
+import NotFound from './NotFound';
 
 export default class NotFound extends Component {
-  render() {
+  render () {
     return <div> Not Found </div>
   }
 }
