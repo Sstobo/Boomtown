@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { getFilters } from "../../redux/modules/filter";
+import { Filters } from "../../redux/modules/filter";
 import SelectField from "material-ui/SelectField";
 import MenuItem from "material-ui/MenuItem";
 
