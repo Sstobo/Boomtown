@@ -12,23 +12,28 @@ const { graphqlExpress, graphiqlExpress } = require("apollo-server-express");
 
 config(app);
 
+
 let postgresResource = require("./api/resources/postgresResource");
 let firebaseResource = require("./api/resources/firebaseResource")(app);
 
-postgresResource(app).then(postgresResource => start(postgresResource));
+postgresResource(app).then(psgResource => start(psgResource));
 
-function start(postgresResource) {
+function start(psgResource) {
   const schema = makeExecutableSchema({
     typeDefs,
     resolvers: initResolvers({
-      postgresResource,
+  
+      psgResource,
       firebaseResource
     })
   });
 
+
   app.use("*", cors());
 
+
   app.use("/graphql", bodyParser.json(), graphqlExpress({ schema }));
+
   app.use(
     "/graphiql",
     graphiqlExpress({

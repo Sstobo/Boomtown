@@ -2,33 +2,29 @@ const firebase = require("firebase");
 require("firebase/auth");
 
 module.exports = app => {
-
   const firebaseApp = firebase.initializeApp(app.get("FIREBASE_CONFIG"));
   const db = firebaseApp.database();
   const auth = firebaseApp.auth();
 
   return {
     async getUsers() {
-      const users = await db
-        .ref("users")
-        .once("value")
-        .val();
+      let users = await db.ref("users").once("value");
+      users = users.val();
       const userList = [];
-      Object.keys(users.val(), userid => {
+      for (userid in users) {
         userList.push({
           id: userid,
+          bio: users[userid].bio,
           email: users[userid].email,
           fullname: users[userid].fullname,
-          bio: users[userid].bio
+          imageurl: users[userid].imageurl
         });
-      });
+      }
       return userList;
     },
     async getUser(userid) {
       let user = await db.ref(`users/${userid}`).once("value");
       user = user.val();
-      console.log(user);
-      console.log(userid);
       return {
         id: userid,
         ...user

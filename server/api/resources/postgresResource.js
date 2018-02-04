@@ -10,7 +10,6 @@ module.exports = async app => {
     password: app.get("PGPASSWORD"),
     port: app.get("PGPORT")
   });
-
   await client.connect();
 
   return {
@@ -26,87 +25,59 @@ module.exports = async app => {
       });
     },
 
-    getBorrowedItems(userid) {
-      return new Promise((resolve, reject) => {
-        client.query(
-          "SELECT * FROM items WHERE borrower = $1",
-          [userid],
-          (err, data) => {
-            resolve(data.rows);
-          }
-        );
-      });
-    },
-
     getItems() {
       return new Promise((resolve, reject) => {
-        client.query("SELECT * FROM items", (err, data) => {
+        client.query("SELECT * from items", (err, data) => {
+          console.log(err, data);
           resolve(data.rows);
         });
       });
     },
-
     getItem(id) {
       return new Promise((resolve, reject) => {
-        client.query("SELECT * FROM items WHERE id = $1", [id], (err, data) => {
+        client.query("SELECT * from items WHERE id = $1", [id], (err, data) => {
+          console.log(err, data);
           resolve(data.rows);
         });
       });
     },
-
-    getTags(itemid) {
+    getTags(id) {
       return new Promise((resolve, reject) => {
         client.query(
           `SELECT * FROM tags
-           inner join itemtags on itemtags.tagid = tags.id 
-           WHERE itemtags.itemid = $1
-           `,
-          [itemid],
+           INNER JOIN itemtags ON itemtags.tagid = tags.id
+           WHERE itemtags.itemid = $1`,
+          [id],
           (err, data) => {
-            if (err) {
-              reject(err);
-              return;
-            }
-            console.log(data.rows);
+            console.log(err, data);
             resolve(data.rows);
           }
         );
       });
     },
-
     async createItem({ title, description, imageurl, itemowner, tags }) {
       const itemValues = [title, description, imageurl, itemowner];
 
       tags = tags.map(t => t.id);
 
-      const itemInsertQuery = `INSERT INTO items(title, description, imageurl, itemowner)
-											VALUES($1, $2, $3, $4) RETURNING *`;
+      const itemInsertQuery = `INSERT INTO items(title, description, imageurl, itemowner) VALUES($1, $2, $3, $4) RETURNING *`;
 
       try {
         await client.query("BEGIN");
-        const itemResults = await client.query(itemInsertQuery, itemValues);
+        const itemResult = await client.query(itemInsertQuery, itemValues);
+        const tagsInsertQuery = `INSERT INTO itemtags(itemid, tagid) VALUES 
+        ${tq(tags)}`;
 
-        const tagsInsertQuery = `INSERT INTO itemtags(itemid, tagid)
-																		VALUES ${tq(tags)}`;
-
-        const tagsResult = await client.query(tagsInsertQuery, [
-          itemResults.rows[0].id,
-          ...tags
-        ]);
+        await client.query(tagsInsertQuery, [itemResult.rows[0].id, ...tags]);
 
         await client.query("COMMIT");
-        return itemResults.rows[0];
+        return itemResult.rows[0];
       } catch (e) {
         await client.query("ROLLBACK");
         throw e;
       }
     },
-
-    updateItem(id) {
-      return;
-    },
-
-    getItemsByTag(id) {
+    updateItem() {
       return;
     }
   };
