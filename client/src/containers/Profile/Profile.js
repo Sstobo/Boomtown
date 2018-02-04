@@ -5,7 +5,6 @@ import ItemCardList from "../../components/ItemCardList";
 import ItemCard from "../../components/ItemCard";
 import Gravatar from "react-gravatar";
 import Paper from "material-ui/Paper";
-import PropTypes from "prop-types";
 import Masonry from "react-masonry-component";
 import {
   Card,
