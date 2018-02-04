@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import "./styles.css";
 import Placeholder from "../../images/item-placeholder.jpg";
 import Moment from "moment";
 import Gravatar from "react-gravatar";
