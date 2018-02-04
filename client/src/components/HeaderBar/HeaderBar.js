@@ -1,135 +1,106 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Route } from "react-router-dom";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import SelectField from "material-ui/SelectField";
+import { setFilterValue } from "../../redux/modules/filter";
 import FontIcon from "material-ui/FontIcon";
 import MenuItem from "material-ui/MenuItem";
-import SelectField from "material-ui/SelectField";
 import RaisedButton from "material-ui/RaisedButton";
-import { firebaseAuth } from "../../config/firebaseConfig";
+import logo from "../../images/boomtown-logo.svg";
 import { Toolbar, ToolbarGroup, ToolbarSeparator } from "material-ui/Toolbar";
-import { filterItems } from "../../redux/modules/items";
+import Paper from "material-ui/Paper";
+import PropTypes from "prop-types";
+import { firebaseAuth } from "../../config/firebaseConfig";
+import { authId } from "../../redux/modules/auth";
+import FloatingActionButton from "material-ui/FloatingActionButton";
+import ContentAdd from "material-ui/svg-icons/content/add";
 
-import firebase from "firebase";
-
-
-
-export class HeaderBar extends React.Component {
-  logOut = e => {
-		e.preventDefault();
-		firebase.auth().signOut();
-	};
+const style = {
+  marginRight: 20
+};
+class ToolbarExamplesSimple extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
-      values: []
+      value: []
     };
-    this.handleChange = this.handleChange.bind(this);
   }
-
-  handleChange = (event, index, values) => {
-    console.log("change")
-   
-    this.props.dispatch(filterItems(values, this.props.items));
-      
-        console.log("this.props in headerbar: ", this.props.items)
-    this.setState({ values });
-        console.log("{value} in headerbar ",{values})
-  };  
-
+  handleChange = (event, index, selected) => {
+    this.props.dispatch(setFilterValue(selected));
+  };
+  handleSignOut() {
+    if (firebaseAuth.currentUser) {
+      firebaseAuth.signOut();
+      return true;
+    }
+  }
   render() {
-    const userProfile = firebaseAuth.currentUser.uid;
-    const { values } = this.state;
-    console.log("rendered state:", this.state)
     return (
-      <Toolbar
-        style={{
-          backgroundColor: "white",
-          paddingRight: "24px",
-          height: "70px"
-        }}
-        className={"header-bar"}
-      >
-        <ToolbarGroup firstChild={true}>
-          <Link to="/">
-            <img
-              alt="logo"
-              src={require("../../images/boomtown-logo.svg")}
-              className="logo-image"
-            />
-          </Link>
-
-          <SelectField
-            multiple={true}
-            className="select-field"
-            floatingLabelText="Select your tab"
-            value={this.props.tags}
-            onChange={this.handleChange}
+      <Paper zDepth={3}>
+        <Toolbar className="header-bar" style={{ backgroundColor: "#fff" }}>
+          <ToolbarGroup firstChild={true}>
+            <ToolbarSeparator />
+            <a href="/">
+              <img alt="HeaderLogo" className="logo-image" src={logo} />
+            </a>  
+            <SelectField
+              className="SelectField"
+              multiple
+              autoWidth={true}
+              floatingLabelText="Filter by Tag"
+              onChange={this.handleChange}
+              value={this.props.selectedFilters}
+            >
+              {this.props.filters.map(tag => (
+                <MenuItem
+                  key={tag.title}
+                  checked={
+                    this.props.selectedFilters.find(f => f === tag.title)
+                      ? true
+                      : false
+                  }
+                  value={tag.title}
+                  primaryText={tag.title}
+                />
+              ))}
+            </SelectField>
+          </ToolbarGroup>
+          <ToolbarGroup className="buttonbox">
+            <FontIcon className="muidocs-icon-custom-sort" />
+            <ToolbarSeparator />
+            <Link to={`/profile/${this.props.user}`}>
+              <RaisedButton label="My Profile" primary={true} />
+            </Link>
+            <ToolbarSeparator />
+            <Link to="/login">
+              <RaisedButton
+                label="Logout"
+                secondary={true}
+                onClick={this.handleSignOut}
+              />
+            </Link>
+          </ToolbarGroup>
+        </Toolbar>
+        <Link to="/share">
+          <FloatingActionButton
+            secondary={true}
+            className="share-button"
+            style={style}
           >
-            <MenuItem
-              insetChildren
-              checked={values && values.indexOf("Household Items") > -1}
-              value={"Household Items"}
-              primaryText={"Household Items"}
-            />
-            <MenuItem
-              insetChildren
-              checked={values && values.indexOf("Recreational Equipment") > -1}
-              value={"Recreational Equipment"}
-              primaryText={"Recreational Equipment"}
-            />
-            <MenuItem
-              insetChildren
-              checked={values && values.indexOf("Musical Instruments") > -1}
-              value={"Musical Instruments"}
-              primaryText={"Musical Instruments"}
-            />
-            <MenuItem
-              insetChildren
-              checked={values && values.indexOf("Tools") > -1}
-              value={"Tools"}
-              primaryText={"Tools"}
-            />
-            <MenuItem
-              insetChildren
-              checked={values && values.indexOf("Physical Media") > -1}
-              value={"Physical Media"}
-              primaryText={"Physical Media"}
-            />
-            <MenuItem
-              insetChildren
-              checked={values && values.indexOf("Electronics") > -1}
-              value={"Electronics"}
-              primaryText={"Electronics"}
-            />
-          </SelectField>
-        </ToolbarGroup>
-
-        <ToolbarGroup>
-          <FontIcon className="muidocs-icon-custom-sort" />
-          <ToolbarSeparator />
-        
-          <Link to={`/profile/${userProfile}`}>
-          	<RaisedButton label="My Profile" primary />  
-          </Link>
-          
-          <RaisedButton
-							className="navbar-logout-button"
-							label="Logout"
-							backgroundColor="#263238"
-							labelColor="#fff"
-							onClick={this.logOut}
-						/>
-        </ToolbarGroup>
-      </Toolbar>
+            <ContentAdd />
+          </FloatingActionButton>
+        </Link>
+      </Paper>
     );
   }
 }
-const mapStateToProps = state => ({
-  isLoading: state.items.isLoading,
-  items: state.items.items,
-  tags: state.items.tags,
-  itemsFilter: state.items.itemFilter,
-  error: state.items.error
-});
-export default connect(mapStateToProps)(HeaderBar);
+const mapStateToProps = state => {
+  return {
+    filters: state.filter.filters,
+    selectedFilters: state.filter.selectedFilters,
+    user: state.auth.authId
+  };
+};
+
+export default connect(mapStateToProps)(ToolbarExamplesSimple);

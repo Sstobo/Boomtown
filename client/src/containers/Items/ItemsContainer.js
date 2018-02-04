@@ -1,14 +1,39 @@
+
 import React, { Component } from "react";
 import Items from "./Items";
-import PropTypes from "prop-types";
 import { graphql, compose } from "react-apollo";
 import gql from "graphql-tag";
+import PropTypes from "prop-types";
+import { firebaseAuth, firebaseApp } from "../../config/firebaseConfig";
 import { connect } from "react-redux";
+
 class ItemsContainer extends Component {
+  propTypes = {
+    loading: PropTypes.bool,
+    items: PropTypes.array
+  };
   render() {
-    const { loading, items } = this.props.data;
-    console.log("items to be passed to itemcards: " , items);
-    return loading ? <p> Loading </p> : <Items items={items} />;
+    const { loading, items, error } = this.props.data;
+    let filtered = [];
+    if (loading)
+      return (
+       <p> Loading </p>
+      );
+    else if (error) {
+      console.log(error);
+      return <p>error</p>;
+    } else if (items)
+      filtered = items.filter(item => {
+        return item.tags.some(tag => {
+          return this.props.selectedFilters.includes(tag.title);
+        });
+      });
+
+    return (
+      <Items
+        items={this.props.selectedFilters.length === 0 ? items : filtered}
+      />
+    );
   }
 }
 
@@ -37,14 +62,18 @@ const fetchItems = gql`
     }
   }
 `;
-const mapStateToProps = state => ({
-  isLoading: state.items.isLoading,
-  items: state.items.items,
-  tags: state.items.tags,
-  itemsFilter: state.items.itemFilter,
-  error: state.items.error
-});
+
+
+
+const mapStateToProps = state => {
+  return {
+    filters: state.filter.filters,
+    selectedFilters: state.filter.selectedFilters,
+    user: state.auth.authId
+  };
+};
 
 export default compose(graphql(fetchItems), connect(mapStateToProps))(
   ItemsContainer
 );
+

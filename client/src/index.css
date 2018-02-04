@@ -190,9 +190,16 @@ body {
 
 .header-bar {
     background-color: white !important;
-    height: 160px !important;
+    height: 190px !important;
     display: flex !important;
     flex-wrap: wrap !important;
+}
+
+.share-button {
+    position: fixed;
+    left: 94%;
+    top: 92%;
+    z-index: 100;
 }
 
 .paper {
@@ -267,7 +274,7 @@ p {
 
 @media only screen and (min-width: 600px) {
     .header-bar {
-        height: 60px !important;
+        height: 90px !important;
     }
     .single-item {
         margin: 12px !important;
