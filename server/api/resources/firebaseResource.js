@@ -1,40 +1,38 @@
-
-// import 'firebase/auth';
-const firebase = require('firebase');
-// Initialize Firebase
-// const firebaseAuth = firebaseApp.auth();
-
-
+const firebase = require("firebase");
+require("firebase/auth");
 
 module.exports = app => {
 
-  const firebaseApp = firebase.initializeApp(app.get('FIREBASE_CONFIG'))
-
-  const firedb = firebaseApp.database();
-  const auth = firebase.auth();
+  const firebaseApp = firebase.initializeApp(app.get("FIREBASE_CONFIG"));
+  const db = firebaseApp.database();
+  const auth = firebaseApp.auth();
 
   return {
     async getUsers() {
-      const users = await firedb.ref('/users/').once('value');
+      const users = await db
+        .ref("users")
+        .once("value")
+        .val();
       const userList = [];
-      Object.keys(users, (userid) => {
+      Object.keys(users.val(), userid => {
         userList.push({
-          // id: userid, 
-          email: users[userid].email, 
-          fullname:users[userid].fullname,
-          // imageurl: "",
+          id: userid,
+          email: users[userid].email,
+          fullname: users[userid].fullname,
           bio: users[userid].bio
         });
-    })},
+      });
+      return userList;
+    },
     async getUser(userid) {
-      console.log(userid)
-      let user = await firedb.ref(`/users/${userid}`).once('value');
-       user = user.val();
-       return {
-         id: userid,
-         ... user
-       }
+      let user = await db.ref(`users/${userid}`).once("value");
+      user = user.val();
+      console.log(user);
+      console.log(userid);
+      return {
+        id: userid,
+        ...user
+      };
     }
-  }
-}
-
+  };
+};

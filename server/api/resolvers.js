@@ -1,8 +1,8 @@
 // where the commands live
 module.exports = ({
   // commands for each resource
-  jsonResource: { getUser, getUsers},
-  postgresResource: { getItem, getItems, getTags  }
+  firebaseResource: { getUsers, getUser }, 
+  postgresResource: { getItem, getItems, getTags, getSharedItems, getBorrowedItems, createItem  }
 
 }) => {
   // all commands exist within the resources. They are collected here. 
@@ -30,6 +30,13 @@ module.exports = ({
     },
     borrowItem(root, { borrowedItem: { title } }) {
       return { title };
+    },
+    createNewItem(root, { newItem }) {
+      return createItem(newItem);
+    },
+    updateItem(root, { updatedItem: { borrower } }) {
+      console.log({ borrower });
+      return { borrower };
     }
   },
 
@@ -44,16 +51,14 @@ module.exports = ({
         return null;
       }
     },
-    tags(item) {
-      return getTags(item.id);
-      // const theItem = await getItem(item.id);
-      // return theItem.tags;
+    async tags(item) {
+      return await getTags(item.id);
     }
   },
     User: {
-      items: (user, args, context) => {
-        return context.loaders.UserOwnedItems.load(user.id);
-      },
+      borroweditems(user) {
+        return getBorrowedItems(user.id);
+      }
     shareditems(user) {
       return sharedItems(user.id);
     }
