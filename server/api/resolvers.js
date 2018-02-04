@@ -58,7 +58,7 @@ module.exports = ({
     User: {
       borroweditems(user) {
         return getBorrowedItems(user.id);
-      }
+      },
     shareditems(user) {
       return sharedItems(user.id);
     }
