@@ -5,23 +5,10 @@ import { graphql, compose } from "react-apollo";
 import gql from "graphql-tag";
 import { connect } from "react-redux";
 class ItemsContainer extends Component {
-
-
   render() {
     const { loading, items } = this.props.data;
     console.log("items to be passed to itemcards: " , items);
-
-    let filtered = [];
-
-    if (items) {
-      filtered = items.filter(item => {
-        return item.tags.some(tag => {
-          return this.props.selectedTags.includes(tag.title);
-        });
-      });
-    }
-  
-    return loading ? <p> Loading </p> : <Items list={this.props.selectedTags.length === 0 ? items : filtered} />;
+    return loading ? <p> Loading </p> : <Items items={items} />;
   }
 }
 
@@ -36,7 +23,8 @@ const fetchItems = gql`
         id
         fullname
         email
-      }  
+      }
+      
       description
       available
       tags {
