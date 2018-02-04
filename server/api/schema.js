@@ -28,7 +28,7 @@ module.exports = `
     
     input TagInput {
       id: ID
-      title: String
+    
     }
     input updateItemInput {
       title: String
@@ -37,6 +37,7 @@ module.exports = `
     input AddItemInput {
       imageurl: String
       title: String
+      itemowner: ID
       description: String
       tags: [TagInput]
     }

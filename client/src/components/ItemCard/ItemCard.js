@@ -13,6 +13,7 @@ import {
 } from "material-ui/Card";
 
 const ItemCard = ({ item }) => (
+  
   <div>
     
     <Card>
@@ -24,12 +25,13 @@ const ItemCard = ({ item }) => (
         >
           <img src={item.imageurl} alt="item for borrowing" />
         </CardMedia>
-      ) : (
+      ) :   (
         <CardMedia>
           <img src={item.imageurl} alt="item for borrowing" />
         </CardMedia>
       )}
-      <Link to={"/profile/" + item.itemowner.id}>
+    
+      <Link to={`/profile/${item.itemowner.id}`}>
         <CardHeader
           title={item.itemowner.fullname}
           subtitle={moment(item.created).fromNow()}

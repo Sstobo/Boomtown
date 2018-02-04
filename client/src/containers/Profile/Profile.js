@@ -5,8 +5,9 @@ import ItemCardList from "../../components/ItemCardList";
 import Gravatar from "react-gravatar";
 import Paper from "material-ui/Paper";
 
-const Profile = ({ items, isLoading }) => {
-  return !isLoading ? (
+const Profile = ({ items }) => {
+  console.log("render pofile", items)
+  return (
     <div>
       <Paper
         className="paper"
@@ -28,11 +29,8 @@ const Profile = ({ items, isLoading }) => {
       />
       <ItemCardList items={items} />
     </div>
-  ) : (
-    <div className="loading-wrapper">
-      <CircularProgress color="white" />
-    </div>
-  );
+  ) 
+  
 };
 Profile.propTypes = {
   items: PropTypes.array.isRequired

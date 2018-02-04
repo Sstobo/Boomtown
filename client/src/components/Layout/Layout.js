@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import FooterBar from "../FooterBar/FooterBar";
 import HeaderBar from "../HeaderBar/HeaderBar";
 import {connect } from 'react-redux';
-
+import {withRouter} from 'react-router';
 
 // const Layout = ({ children, loading, authenticated })
 const Layout = ({ children, userLoading, authenticated }) => (
@@ -36,4 +36,4 @@ const mapStateToProps = (state) => {
     authenticated: state.auth.authenticated
   }
 }
-export default connect(mapStateToProps)(Layout);
+export default withRouter(connect(mapStateToProps)(Layout));

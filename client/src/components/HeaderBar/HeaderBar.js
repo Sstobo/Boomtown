@@ -26,7 +26,7 @@ export class HeaderBar extends React.Component {
         console.log("this.props in headerbar: ", this.props.items)
     this.setState({ values });
         console.log("{value} in headerbar ",{values})
-  };
+  };  
 
   render() {
     const { values } = this.state;

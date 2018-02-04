@@ -22,8 +22,8 @@ module.exports = ({
     }
   },
   Mutation: {
-    addItem(root, { newItem: { title } }) {
-      return { title };
+    addItem(root, { newItem} ) {
+      return createItem(newItem);
     },
     updateItem(root, { currentItem: { title } }) {
       return { title };

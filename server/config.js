@@ -13,6 +13,15 @@ module.exports = app => {
   app.set('PORT', process.env.PORT || '3001');
 
   // Temp json dev server
-  app.set('JSON_PORT', '4000');
+  // app.set('JSON_PORT', '4000');
 
-};
+    app.set("FIREBASE_CONFIG", {
+    apiKey: "AIzaSyDneWVsg7xsubtidXF6RTHku-BH4CKIu5U",
+    authDomain: "boomtown-8cb24.firebaseapp.com",
+    databaseURL: "https://boomtown-8cb24.firebaseio.com",
+    projectId: "boomtown-8cb24",
+    storageBucket: "boomtown-8cb24.appspot.com",
+    messagingSenderId: "747842299117"
+    }
+  )
+  };

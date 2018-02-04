@@ -18,9 +18,9 @@ const initResolvers = require('./api/resolvers');
 const app = express();
 config(app);
 
-const jsonResource = require("./api/resources/jsonResource")(app);
+// const jsonResource = require("./api/resources/jsonResource")(app);
 const postgresResource = require("./api/resources/postgresResource");
-
+const firebaseResource = require("./api/resources/firebaseResource")(app);
 
 // this runs the start function
 postgresResource(app).then(pgResource => start(pgResource));
@@ -34,36 +34,12 @@ function start(postgresResource) {
     typeDefs,
     // runs resolvers 
     resolvers: initResolvers({
-      jsonResource,
+      // jsonResource,
       // both have several returned functions (getItem ect)
-      postgresResource
+      postgresResource,
+      firebaseResource
     })
   });
-
-
-  // app.use('/graphql', bodyParser.json(), graphqlExpress({
-  //   schema,
-  //   context: { loaders: createLoaders() }
-  // }));
-
-  app.use("*", cors());
-  app.use("/graphql", bodyParser.json(), graphqlExpress({
-    schema
-  }));
-
-  const schema = makeExecutableSchema({
-    typeDefs,
-    resolvers: initResolvers({
-      jsonResource,
-      postgresResource
-    })
-  });
-
-
-  // app.use('/graphql', bodyParser.json(), graphqlExpress({
-  //   schema,
-  //   context: { loaders: createLoaders() }
-  // }));
 
   app.use("*", cors());
   app.use("/graphql", bodyParser.json(), graphqlExpress({
