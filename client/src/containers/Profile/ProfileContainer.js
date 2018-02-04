@@ -17,7 +17,7 @@ console.log(user)
     <p> Loading </p>
       :
 
-    <Profile i tems={user.shareditems}  />;
+    <Profile items={user.shareditems}  />;
     
   }
 }
