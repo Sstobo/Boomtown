@@ -15,7 +15,7 @@ config(app);
 let postgresResource = require("./api/resources/postgresResource");
 let firebaseResource = require("./api/resources/firebaseResource")(app);
 
-postgresResource(app).then(psgResource => start(psgResource));
+postgresResource(app).then(postgresResource => start(postgresResource));
 
 function start(postgresResource) {
   const schema = makeExecutableSchema({
