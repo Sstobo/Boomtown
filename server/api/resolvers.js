@@ -22,9 +22,9 @@ module.exports = ({
     }
   },
   Mutation: {
-    addItem(root, { newItem} ) {
-      return createItem(newItem);
-    },
+    // addItem(root, { newItem} ) {
+    //   return createItem(newItem);
+    // },
     updateItem(root, { currentItem: { title } }) {
       return { title };
     },

@@ -23,7 +23,7 @@ module.exports = `
 		id: ID
 		title: String
   }
-  
+    
 
 	input AddItemInput {
 		imageurl: String
@@ -44,7 +44,7 @@ module.exports = `
 		id: ID
   }
   
-  
+
 	type Mutation {
 		updateItem(updatedItem: UpdateItemInput): Item
 		createNewItem(newItem: AddItemInput): Item
