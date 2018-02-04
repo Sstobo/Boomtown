@@ -12,7 +12,7 @@ import Layout from "./components/Layout";
 import Login from "./containers/Login";
 import Profile from "./containers/Profile";
 import Items from "./containers/Items";
-import NotFound from "./containers/NotFound";
+// import NotFound from "./containers/NotFound";
 import { Provider } from "react-redux";
 import { ApolloProvider } from "react-apollo";
 import { firebaseApp, firebaseAuth} from "./config/firebaseConfig"
@@ -52,7 +52,7 @@ const Boomtown = () => (
               <Route exact path="/login" component={Login} />
               {/* <PrivateRoute exact path="/share" component={Share} /> */}
               <PrivateRoute exact path="/profile/:id" component={Profile} />
-              <PrivateRoute exact path="*" component={NotFound} />
+              {/* <PrivateRoute exact path="*" component={NotFound} /> */}
               </Switch>
             </Layout>
           </div>
