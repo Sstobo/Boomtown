@@ -4,7 +4,16 @@ import CircularProgress from "material-ui/CircularProgress";
 import ItemCardList from "../../components/ItemCardList";
 import Gravatar from "react-gravatar";
 import Paper from "material-ui/Paper";
-
+import PropTypes from "prop-types";
+import Masonry from "react-masonry-component";
+import {
+  Card,
+  CardActions,
+  CardHeader,
+  CardMedia,
+  CardTitle,
+  CardText
+} from "material-ui/Card";
 
 const Profile = ({ list, user }) => {
   return (
