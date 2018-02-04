@@ -3,6 +3,6 @@ import NotFoundContainer from './NotFoundContainer';
 
 export default class NotFound extends Component {
   render () {
-    return <div> Not Found </div>
+    return <div> Not Found - 404 </div>
   }
 }
