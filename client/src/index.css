@@ -241,6 +241,17 @@ p {
     height: 40%;
 
 }
+.left-card {
+    width: 45%;
+}
+.right-card {
+    width: 45%;
+}
+.share-wrapper {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+}
 .image-404 {
     width: 100%;
 }

@@ -96,8 +96,8 @@ class Share extends React.Component {
 		const { finished, stepIndex } = this.state;
 
 		return (
-			<div>
-				<div>
+			<div className="share-wrapper">
+				<div className="left-card">
 					<Card className="share-card">
 						<CardMedia className="card-media">
 							<img src={Placeholder} alt="placeholder for uploaded photo" />
