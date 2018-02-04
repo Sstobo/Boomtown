@@ -24,9 +24,11 @@ const fetchItems = gql`
         fullname
         email
       }
-      
       description
       available
+      borrower {
+        id
+      }
       tags {
         id
         title
