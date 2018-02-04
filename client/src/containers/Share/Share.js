@@ -4,7 +4,7 @@ import "./styles.css";
 import Placeholder from "../../images/item-placeholder.jpg";
 import Moment from "moment";
 import Gravatar from "react-gravatar";
-import FilterMenu from "../../components/FilterMenu";
+import Filter from "../../components/Filter";
 
 import firebase from "firebase";
 import { Step, Stepper, StepLabel, StepContent } from "material-ui/Stepper";
