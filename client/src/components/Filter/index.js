@@ -1,3 +1,3 @@
-import FilterMenu from "./FilterMenu";
+import Filter from "./Filter";
 
-export default FilterMenu;
+export default Filter;
