@@ -11,6 +11,7 @@ import PrivateRoute from "./components/PrivateRoute"
 import Layout from "./components/Layout";
 import Login from "./containers/Login";
 import Profile from "./containers/Profile";
+import Share from "./containers/Share"
 import Items from "./containers/Items";
 import NotFound from "./containers/NotFound";
 import { Provider } from "react-redux";
@@ -50,7 +51,7 @@ const Boomtown = () => (
               <Switch> 
               <PrivateRoute exact path="/" component={Items} />
               <Route exact path="/login" component={Login} />
-              {/* <PrivateRoute exact path="/share" component={Share} /> */}
+              <PrivateRoute exact path="/share" component={Share} />
               <PrivateRoute exact path="/profile/:id" component={Profile} />
               <PrivateRoute exact path="*" component={NotFound} />
               </Switch>
