@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import NotFound from './NotFound';
+import NotFoundContainer from './NotFoundContainer';
 
 export default class NotFound extends Component {
   render () {
