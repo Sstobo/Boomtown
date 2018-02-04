@@ -1,67 +1,53 @@
-// where the commands live
 module.exports = ({
-  // commands for each resource
-  firebaseResource: { getUsers, getUser }, 
-  postgresResource: { getItem, getItems, getTags, getSharedItems, getBorrowedItems, createItem  }
-
+  postgressResource: { getItems, getItem, getTags, getSharedItems, createItem },
+  firebaseResource: { getUser, getUsers }
 }) => {
-  // all commands exist within the resources. They are collected here. 
- return {
-  Query: {
-    items() {
-      return getItems();
-    },
-    users() {
-      return  getUsers();
-    },
-    user(root, { id }) {
-     return getUser(id);
-    },
-    item(root, { id }) {
-      return getItem(id);
-    }
-  },
-  Mutation: {
-    // addItem(root, { newItem} ) {
-    //   return createItem(newItem);
-    // },
-    updateItem(root, { currentItem: { title } }) {
-      return { title };
-    },
-    borrowItem(root, { borrowedItem: { title } }) {
-      return { title };
-    },
-    createNewItem(root, { newItem }) {
-      return createItem(newItem);
-    },
-    updateItem(root, { updatedItem: { borrower } }) {
-      console.log({ borrower });
-      return { borrower };
-    }
-  },
+  return {
+    Query: {
+      items() {
 
-  Item: {
-    itemowner(item) {
-     return getUser(item.itemowner);
-    },
-    borrower(item) {
-      if (item.borrower) {
-       return getUser(item.borrower)
-      } else {
-        return null;
+        return getItems();
+      },
+      user(root, { id }) {
+        return getUser(id);
+      },
+      users() {
+        return getUsers();
+      },
+      item(root, { id }) {
+        return getItem(id);
       }
     },
-    async tags(item) {
-      return await getTags(item.id);
-    }
-  },
-    User: {
-      borroweditems(user) {
-        return getBorrowedItems(user.id);
+    Mutation: {
+      createNewItem(root, { newItem }) {
+        return createItem(newItem);
       },
-    shareditems(user) {
-      return sharedItems(user.id);
+      updateItem(root, { enterItem: { title } }) {
+        return { title };
+      },
+      updateBorrower(root, { newBorrower: { borrower } }) {
+        return { borrower };
+      }
+    },
+    Item: {
+      itemowner(item) {
+        return getUser(item.itemowner);
+      },
+      borrower(item) {
+        if (item.borrower) {
+          return getUser(item.borrower);
+        } else {
+          return null;
+        }
+      },
+      tags(item) {
+        return getTags(item.id);
+      }
+    },
+    User: {
+      shareditems(user) {
+        return getSharedItems(user.id);
+      }
     }
-  }
-}
-}
+  };
+};
