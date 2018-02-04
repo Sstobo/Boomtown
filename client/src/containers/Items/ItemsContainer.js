@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import Items from "./Items";
 import PropTypes from "prop-types";
-import { fetchItemsAndUsers } from "../../redux/modules/items";
-import { connect } from "react-redux";
 import { graphql, compose } from "react-apollo";
+import gql from "graphql-tag";
+import { connect } from "react-redux";
 class ItemsContainer extends Component {
 
 
