@@ -24,7 +24,7 @@ const fetchItems = gql`
         fullname
         email
       }
-      itemurl
+      
       description
       available
       tags {
