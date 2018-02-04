@@ -236,7 +236,12 @@ p {
     text-align: center;
     color: black !important;
 }
+.share-card {
+    width: 70%;
+    height: 70%;
+    margin: 0 auto;
 
+}
 .left-card {
     width: 45%;
 }
