@@ -162,7 +162,7 @@ class Share extends React.Component {
 									To share an item, you'll add it to our list of categories. You
 									can select multiple categories.
 								</p>
-								<FilterMenu />
+								<Filter/>
 								{this.renderStepActions(2)}
 							</StepContent>
 						</Step>
