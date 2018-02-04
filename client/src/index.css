@@ -239,12 +239,10 @@ p {
 .share-card {
     width: 70%;
     height: auto;
-    
+    margin: 0 auto
 
 }
-.left-card {
-    width: 45%;
-}
+
 .right-card {
     width: 45%;
 }
