@@ -50,9 +50,9 @@ const Boomtown = () => (
               <Switch> 
               <Route exact path="/" component={Login} />
               <PrivateRoute exact path="/items" component={Items} />
-              <PrivateRoute exact path="/share" component={Share} />
+              {/* <PrivateRoute exact path="/share" component={Share} /> */}
               <PrivateRoute exact path="/profile/:id" component={Profile} />
-              <PrivateRoute exact path="*" component={NotFound} />
+              {/* <PrivateRoute exact path="*" component={NotFound} /> */}
               </Switch>
             </Layout>
           </div>
