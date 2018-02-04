@@ -1,17 +1,22 @@
 module.exports = `
-  
-    type Tag {
-      id: ID
-      title: String
-    }
-
-    type User {
-      id: ID
-      email: String
-      fullname: String
-      shareditems: [Item]
-      items: [Item]
-    }
+	type User {
+		id: ID
+		fullname: String
+		email: String
+		bio: String
+		shareditems: [Item]
+		borroweditems: [Item]
+	}
+	type Item {
+		id: ID
+		title: String
+		description: String
+		itemowner: User
+		borrower: User
+		imageurl: String
+		available: Boolean
+		tags: [Tag]
+	}
 
     type Item {
       id: ID
