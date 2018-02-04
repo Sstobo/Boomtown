@@ -237,12 +237,16 @@ p {
     color: black !important;
 }
 .share-card {
-    width: 40%;
+    width: 80%;
     height: auto;
     margin: 0 auto
 
 }
-
+.left-card {
+    width: 50%;
+    height: 600px;
+    margin-top: 66px;
+}
 .share-wrapper {
     display: flex;
     width: 100%;
