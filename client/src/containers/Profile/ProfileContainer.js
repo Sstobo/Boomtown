@@ -11,7 +11,6 @@ const fetchUsers = gql`
       email
       fullname
       bio
-      imageurl
       shareditems {
         id
         title
@@ -33,9 +32,7 @@ const fetchUsers = gql`
           title
         }
       }
-      borroweditems {
-        id
-      }
+     
     }
   }
 `;
