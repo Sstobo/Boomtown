@@ -14,7 +14,7 @@ import {
 } from "material-ui/Card";
 import TextField from "material-ui/TextField";
 
-// import { graphql, compose } from "react-apollo";
+import { graphql, compose } from "react-apollo";
 import gql from "graphql-tag";
 
 const getUsers = gql`
