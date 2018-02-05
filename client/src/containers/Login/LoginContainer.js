@@ -1,9 +1,7 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 import { firebaseAuth } from "../../config/firebaseConfig";
 import {connect} from 'react-redux';
 import Login from "./Login";
-import { userLoading } from "../../redux/modules/auth";
 
 class LoginContainer extends Component {
   static propTypes = {};
@@ -38,8 +36,6 @@ class LoginContainer extends Component {
         })
         .catch(error => {
           this.setState({logicError: error})
-          var errorCode = error.code;
-          var errorMessage = error.message;
           // ...
         });
     }
