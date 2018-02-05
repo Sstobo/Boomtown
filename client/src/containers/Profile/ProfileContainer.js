@@ -31,8 +31,7 @@ const fetchUsers = gql`
           id
           title
         }
-      }
-     
+      }   
     }
   }
 `;
@@ -40,19 +39,17 @@ const fetchUsers = gql`
 class ProfileContainer extends Component {
   render() {
     const { loading, user, borrowed } = this.props.data;
-    console.log(this.props.data);
     return loading ? (
-      <p> Loading</p>
+      <h2> Loading</h2>
     ) : (
       <Profile list={user.shareditems} user={user} />
     );
   }
 }
-
 export default graphql(fetchUsers, {
   options: ownProps => ({
     variables: {
-      id: ownProps.match.params.id // e.g. from React Router!
+      id: ownProps.match.params.id
     }
   })
 })(ProfileContainer);
