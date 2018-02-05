@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import Placeholder from "../../images/item-placeholder.jpg";
 import Moment from "moment";
 import Gravatar from "react-gravatar";
-import Filter from "../../components/Filter";
+
 
 import firebase from "firebase";
 import { Step, Stepper, StepLabel, StepContent } from "material-ui/Stepper";
@@ -30,6 +30,11 @@ class Share extends React.Component {
 		newImage: "",
 		newTags: []
 		
+	};
+	handleUpdateTitle = e => {
+		this.setState({
+			title: e.target.value
+		});
 	};
 
 	handleNext = () => {
@@ -111,6 +116,7 @@ class Share extends React.Component {
 			<div className="share-wrapper">
 				<div className="left-card">
 					<Card className="share-card">
+					
 						<CardMedia className="card-media">
 							<img src={newImage ? newImage : Placeholder}
 							 alt="placeholder for uploaded photo" />
@@ -160,7 +166,7 @@ class Share extends React.Component {
 									Folks need to know what you're sharing. Give them a clue by
 									adding a title & description.
 								</p>
-								<TextField hintText="Title" />
+								<TextField handleChange={this.handleUpdateTitle} hintText="Title" />
 								<br />
 								<TextField hintText="Description" />
 								{this.renderStepActions(1)}
@@ -173,7 +179,7 @@ class Share extends React.Component {
 									To share an item, you'll add it to our list of categories. You
 									can select multiple categories.
 								</p>
-								<Filter/>
+							
 								{this.renderStepActions(2)}
 							</StepContent>
 						</Step>
