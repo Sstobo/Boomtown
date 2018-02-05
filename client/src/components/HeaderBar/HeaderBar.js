@@ -12,9 +12,10 @@ import { Toolbar, ToolbarGroup, ToolbarSeparator } from "material-ui/Toolbar";
 import Paper from "material-ui/Paper";
 import PropTypes from "prop-types";
 import { firebaseAuth } from "../../config/firebaseConfig";
-import { authId } from "../../redux/modules/auth";
+
 import FloatingActionButton from "material-ui/FloatingActionButton";
 import ContentAdd from "material-ui/svg-icons/content/add";
+
 
 const style = {
   marginRight: 20
@@ -36,6 +37,7 @@ class ToolbarExamplesSimple extends React.Component {
     }
   }
   render() {
+    console.log(firebaseAuth.currentUser.uid)
     return (
       <Paper zDepth={3}>
         <Toolbar className="header-bar" style={{ backgroundColor: "#fff" }}>
@@ -69,7 +71,7 @@ class ToolbarExamplesSimple extends React.Component {
           <ToolbarGroup className="buttonbox">
             <FontIcon className="muidocs-icon-custom-sort" />
             <ToolbarSeparator />
-            <Link to={`/profile/${this.props.user}`}>
+            <Link to={`/profile/${firebaseAuth.currentUser.uid}`}>
               <RaisedButton label="My Profile" primary={true} />
             </Link>
             <ToolbarSeparator />

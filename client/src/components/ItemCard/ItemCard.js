@@ -46,13 +46,17 @@ const ItemCard = ({ item }) => (
       />
       <CardText>{item.description}</CardText>
       <CardActions>
-        {/* <RaisedButton
-          label="Borrow"
-          backgroundColor="#263238"
-          labelColor="#fff"
-          primary={false}
-          style={{ marginLeft: "0" }}
-        /> */}
+        
+      {!item.borrower && 
+       <RaisedButton
+       label="Borrow"
+       backgroundColor="#263238"
+       labelColor="#fff"
+       primary={false}
+       style={{ marginLeft: "0" }}
+     /> 
+      }
+       
         
       </CardActions>
     </Card>

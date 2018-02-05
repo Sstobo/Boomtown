@@ -56,12 +56,3 @@ export default graphql(fetchUsers, {
     }
   })
 })(ProfileContainer);
-
-// const mapStateToProps = state => ({
-//   isLoading: state.profile.isLoading,
-//   items: state.profile.items,
-//   error: state.profile.error
-
-// });
-
-// export default connect(mapStateToProps)(ProfileContainer);
