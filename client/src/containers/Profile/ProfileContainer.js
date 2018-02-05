@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Profile from "./Profile";
-import { connect } from "react-redux";
 import { graphql } from "react-apollo";
 import gql from "graphql-tag";
 
@@ -38,7 +37,7 @@ const fetchUsers = gql`
 
 class ProfileContainer extends Component {
   render() {
-    const { loading, user, borrowed } = this.props.data;
+    const { loading, user } = this.props.data;
     return loading ? (
       <h2> Loading</h2>
     ) : (
