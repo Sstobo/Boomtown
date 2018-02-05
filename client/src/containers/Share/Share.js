@@ -97,7 +97,6 @@ class Share extends React.Component {
 
 	handleImageUpload = input => {
 	   const ref = firebase.storage().ref();
-		// get the file to be uploaded from the input[type="file"]
 		const file = input.target.files[0];
 		const name = +new Date() + "-" + file.name;
 		const metadata = {
@@ -124,7 +123,6 @@ class Share extends React.Component {
 		  newImage,
 		  selectedTags
 		} = this.state;
-		// console.log(firebaseAuth);
 		const { user } = this.props.data;
 	
 
@@ -226,7 +224,7 @@ class Share extends React.Component {
 export default graphql(getUsers, {
 	options: ownProps => ({
 	  variables: {
-		id: firebaseAuth.currentUser.uid // e.g. from React Router!
+		id: firebaseAuth.currentUser.uid 
 	  }
 	})
   })(Share);
