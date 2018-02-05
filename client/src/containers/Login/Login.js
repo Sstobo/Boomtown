@@ -1,11 +1,7 @@
 import React from "react";
-import PropTypes from "prop-types";
-
 import RaisedButton from "material-ui/RaisedButton";
 import Paper from "material-ui/Paper";
-
 import ValidatedTextField from "../../components/ValidatedTextField";
-
 import "./styles.css";
 import logo from "../../images/boomtown-logo.svg";
 import bottomLeft from "../../images/home-bl.svg";
@@ -51,7 +47,6 @@ const Login = ({
                 handleChange={handlePassword}
                 value={passwordInputValue}
                 label="Password"
-// Type ? 
               />
             </div>
             <RaisedButton
@@ -64,15 +59,10 @@ const Login = ({
               Enter
             </RaisedButton>
           </form>
-{/* TODO   Style form */}
         </div><p>{logicError.message}</p>
       </Paper>
     </div>
   </div>
 );
-
-// Login.propTypes = {
-//   login: PropTypes.func.isRequired
-// };
 
 export default Login;

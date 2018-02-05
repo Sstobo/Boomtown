@@ -15,11 +15,9 @@ class LoginContainer extends Component {
     };
   }
   handleEmail = e => {
-    console.log(e.target.value);
     this.setState({ emailInputValue: e.target.value });
   };
   handlePassword = e => {
-    console.log(e.target.value);
     this.setState({ passwordInputValue: e.target.value });
   };
 
@@ -36,7 +34,6 @@ class LoginContainer extends Component {
         })
         .catch(error => {
           this.setState({logicError: error})
-          // ...
         });
     }
   };

@@ -1,6 +1,6 @@
 
 module.exports = app => {
-// this calibrates the database in terminal
+
 
   app.set('PGUSER', process.env.PGUSER || 'boomtowndb');
   app.set('PGPASSWORD', process.env.PGPASSWORD || 'boomtowndb');
@@ -8,12 +8,10 @@ module.exports = app => {
   app.set('PGHOST', process.env.PGHOST || 'localhost');
   app.set('PGPORT' , process.env.PGPORT || '5432');
 
-// GraphQL config
 
   app.set('PORT', process.env.PORT || '3001');
 
-  // Temp json dev server
-  // app.set('JSON_PORT', '4000');
+
 
     app.set("FIREBASE_CONFIG", {
     apiKey: "AIzaSyDneWVsg7xsubtidXF6RTHku-BH4CKIu5U",

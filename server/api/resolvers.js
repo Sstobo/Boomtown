@@ -1,35 +1,62 @@
 module.exports = ({
-  
-  psgResource: { getItems, getItem, getTags, getSharedItems, createItem },
-  firebaseResource: { getUser, getUsers }
+
+  psgResource: {
+    getItems,
+    getItem,
+    getTags,
+    getSharedItems,
+    createItem
+  },
+  firebaseResource: {
+    getUser,
+    getUsers
+  }
 }) => {
   return {
     Query: {
       items() {
         return getItems();
       },
-      user(root, { id }) {
+      user(root, {
+        id
+      }) {
         return getUser(id);
       },
       users() {
         return getUsers();
       },
-      item(root, { id }) {
+      item(root, {
+        id
+      }) {
         return getItem(id);
       }
     },
-  
+
     Mutation: {
-      createNewItem(root, { newItem }) {
-        console.log(newItem);
+      createNewItem(root, {
+        newItem
+      }) {
+
         return createItem(newItem);
       },
-      updateItem(root, { enterItem: { title } }) {
-        return { title };
+      updateItem(root, {
+        enterItem: {
+          title
+        }
+      }) {
+        return {
+          title
+        };
       },
-      updateBorrower(root, { newBorrower: { borrower } }) {
-        console.log(borrower);
-        return { borrower };
+      updateBorrower(root, {
+        newBorrower: {
+          borrower
+        }
+      }) {
+
+        return {
+          borrower
+        };
       }
     },
     Item: {

@@ -38,8 +38,7 @@ const fetchUsers = gql`
 
 class ProfileContainer extends Component {
   render() {
-    const { loading, user } = this.props.data;
-    console.log(this.props.data);
+    const { loading, user } = this.props.data
     return loading ? (
       <p> Loading</p>
     ) : (

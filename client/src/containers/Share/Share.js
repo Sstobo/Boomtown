@@ -76,9 +76,7 @@ class Share extends React.Component {
 	handleSelectClick = () => document.getElementById("imageInput").click();
 
 	handleImageUpload = input => {
-		console.log(input.target.files[0].name);
-		// create firebase storage reference
-		const ref = firebase.storage().ref();
+	   const ref = firebase.storage().ref();
 		// get the file to be uploaded from the input[type="file"]
 		const file = input.target.files[0];
 		const name = +new Date() + "-" + file.name;
@@ -90,7 +88,6 @@ class Share extends React.Component {
 			.then(snapshot => {
 				const url = snapshot.downloadURL;
 				this.setState( {newImage: url})
-				console.log(url);
 				document.querySelector("#someImageTagID").src = url;
 			})
 			.catch(error => {

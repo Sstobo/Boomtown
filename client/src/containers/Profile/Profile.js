@@ -54,6 +54,3 @@ Profile.propTypes = {
 export default Profile;
 
 
-
-// import ItemsContainer from './Items';
-

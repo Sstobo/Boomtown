@@ -6,15 +6,11 @@ module.exports = app => {
   const USERS_URL =  `http://localhost:${app.get('JSON_PORT')}/users`;
   return {
 
-    // getItems() {
-    //   return fetch(ITEMS_URL).then(r => r.json());
-    // },
+
     getUsers() {
       return fetch(USERS_URL).then(r => r.json());
     },
-    // getItem(id) {
-    //   return fetch(`${USERS_URL}/${id}`).then(r => r.json());
-    // },
+
 
     getUser(id) {
       return fetch(`${ITEMS_URL}/${id}`).then(r => r.json());

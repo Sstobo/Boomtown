@@ -1,6 +1,6 @@
   import * as firebase from 'firebase';
   import 'firebase/auth';
-  // Initialize Firebase
+
 const config = {
     apiKey: "AIzaSyDneWVsg7xsubtidXF6RTHku-BH4CKIu5U",
     authDomain: "boomtown-8cb24.firebaseapp.com",

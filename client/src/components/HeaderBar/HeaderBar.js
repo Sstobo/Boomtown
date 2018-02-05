@@ -35,7 +35,7 @@ class ToolbarExamplesSimple extends React.Component {
     }
   }
   render() {
-    console.log(firebaseAuth.currentUser.uid)
+  
     return (
       <Paper zDepth={3}>
         <Toolbar className="header-bar" style={{ backgroundColor: "#fff" }}>
