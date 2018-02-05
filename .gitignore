@@ -1,2 +1,8 @@
 server/node_modules/
 client/node_modules/
+__tests__/
+.vscode/
+
+.DS_store
+db.json
+npm-debug.log
