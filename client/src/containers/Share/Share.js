@@ -1,7 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
 import Placeholder from "../../images/item-placeholder.jpg";
-import Moment from "moment";
 import Gravatar from "react-gravatar";
 
 
@@ -11,14 +9,11 @@ import RaisedButton from "material-ui/RaisedButton";
 import FlatButton from "material-ui/FlatButton";
 import {
 	Card,
-	CardActions,
 	CardHeader,
 	CardMedia,
 	CardTitle,
 	CardText
 } from "material-ui/Card";
-import SelectField from "material-ui/SelectField";
-import MenuItem from "material-ui/MenuItem";
 import TextField from "material-ui/TextField";
 
 class Share extends React.Component {
@@ -119,7 +114,7 @@ class Share extends React.Component {
 					
 						<CardMedia className="card-media">
 							<img src={newImage ? newImage : Placeholder}
-							 alt="placeholder for uploaded photo" />
+							 alt="placeholder for upload" />
 						</CardMedia>
 
 						<CardHeader
