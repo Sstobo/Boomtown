@@ -1,8 +1,6 @@
 import React from "react";
 import Placeholder from "../../images/item-placeholder.jpg";
 import Gravatar from "react-gravatar";
-
-
 import firebase from "firebase";
 import { Step, Stepper, StepLabel, StepContent } from "material-ui/Stepper";
 import RaisedButton from "material-ui/RaisedButton";
@@ -15,6 +13,20 @@ import {
 	CardText
 } from "material-ui/Card";
 import TextField from "material-ui/TextField";
+
+import { graphql, compose } from "react-apollo";
+import gql from "graphql-tag";
+
+const getUsers = gql`
+  query fetchUser($id: ID) {
+    user(id: $id) {
+      id
+      fullname
+      email
+    }
+  }
+`;
+
 
 class Share extends React.Component {
 	state = {
@@ -32,6 +44,13 @@ class Share extends React.Component {
 		});
 	};
 
+	handleUpdateDescription = e => {
+		this.setState({
+		  description: e.target.value
+		});
+	  };
+	
+	
 	handleNext = () => {
 		const { stepIndex } = this.state;
 		this.setState({
@@ -96,13 +115,17 @@ class Share extends React.Component {
 	};
 
 	render() {
-		const { 
-			newtitle,
-			newDescription,
-			newImage,
-			newTags,	
-			finished, 
-			stepIndex } = this.state;
+		const {
+		  finished,
+		  stepIndex,
+		  title,
+		  description,
+		  newImageUrl,
+		  selectedTags
+		} = this.state;
+		// console.log(firebaseAuth);
+		const { user } = this.props.data;
+	
 
 		return (
 			<div className="share-wrapper">
@@ -158,9 +181,16 @@ class Share extends React.Component {
 									Folks need to know what you're sharing. Give them a clue by
 									adding a title & description.
 								</p>
-								<TextField handleChange={this.handleUpdateTitle} hintText="Title" />
-								<br />
-								<TextField hintText="Description" />
+								<TextField
+								onChange={this.handleUpdateTitle}
+								hintText="Title"
+								floatingLabelText="Title"
+							  />
+							  <TextField
+								onChange={this.handleUpdateDescription}
+								hintText="Description"
+								floatingLabelText="Description"
+							  />
 								{this.renderStepActions(1)}
 							</StepContent>
 						</Step>
