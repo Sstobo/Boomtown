@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Profile from "./Profile";
+import { connect } from "react-redux";
 import { graphql } from "react-apollo";
 import gql from "graphql-tag";
 
@@ -24,6 +25,7 @@ const fetchUsers = gql`
           fullname
         }
         created
+        imageurl
         description
         available
         tags {
@@ -31,14 +33,17 @@ const fetchUsers = gql`
           title
         }
       }
+      borroweditems {
+        id
+      }
     }
   }
 `;
 
-
 class ProfileContainer extends Component {
   render() {
-    const { loading, user } = this.props.data
+    const { loading, user, borrowed } = this.props.data;
+    console.log(this.props.data);
     return loading ? (
       <p> Loading</p>
     ) : (
@@ -50,7 +55,7 @@ class ProfileContainer extends Component {
 export default graphql(fetchUsers, {
   options: ownProps => ({
     variables: {
-      id: ownProps.match.params.id 
+      id: ownProps.match.params.id // e.g. from React Router!
     }
   })
 })(ProfileContainer);
