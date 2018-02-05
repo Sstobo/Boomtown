@@ -12,6 +12,7 @@ import {
 	CardTitle,
 	CardText
 } from "material-ui/Card";
+import { firebaseAuth } from "../../config/firebaseConfig";
 import TextField from "material-ui/TextField";
 
 import { graphql, compose } from "react-apollo";
