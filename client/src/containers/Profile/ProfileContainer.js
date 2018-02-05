@@ -24,7 +24,6 @@ const fetchUsers = gql`
           fullname
         }
         created
-        imageurl
         description
         available
         tags {
@@ -50,7 +49,7 @@ class ProfileContainer extends Component {
 export default graphql(fetchUsers, {
   options: ownProps => ({
     variables: {
-      id: ownProps.match.params.id // e.g. from React Router!
+      id: ownProps.match.params.id 
     }
   })
 })(ProfileContainer);
