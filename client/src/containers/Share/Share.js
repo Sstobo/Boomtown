@@ -120,7 +120,7 @@ class Share extends React.Component {
 		  stepIndex,
 		  title,
 		  description,
-		  newImageUrl,
+		  newImage,
 		  selectedTags
 		} = this.state;
 		// console.log(firebaseAuth);
