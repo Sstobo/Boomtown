@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Profile from "./Profile";
-import { connect } from "react-redux";
 import { graphql } from "react-apollo";
 import gql from "graphql-tag";
 

@@ -4,7 +4,6 @@ import Items from "./Items";
 import { graphql, compose } from "react-apollo";
 import gql from "graphql-tag";
 import PropTypes from "prop-types";
-import { firebaseAuth, firebaseApp } from "../../config/firebaseConfig";
 import { connect } from "react-redux";
 
 class ItemsContainer extends Component {

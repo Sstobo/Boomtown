@@ -1,5 +1,4 @@
 import React from "react";
-import { Route } from "react-router-dom";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import SelectField from "material-ui/SelectField";
@@ -10,7 +9,6 @@ import RaisedButton from "material-ui/RaisedButton";
 import logo from "../../images/boomtown-logo.svg";
 import { Toolbar, ToolbarGroup, ToolbarSeparator } from "material-ui/Toolbar";
 import Paper from "material-ui/Paper";
-import PropTypes from "prop-types";
 import { firebaseAuth } from "../../config/firebaseConfig";
 
 import FloatingActionButton from "material-ui/FloatingActionButton";
