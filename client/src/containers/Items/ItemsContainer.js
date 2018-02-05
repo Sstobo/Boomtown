@@ -3,14 +3,10 @@ import React, { Component } from "react";
 import Items from "./Items";
 import { graphql, compose } from "react-apollo";
 import gql from "graphql-tag";
-import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
 class ItemsContainer extends Component {
-  propTypes = {
-    loading: PropTypes.bool,
-    items: PropTypes.array
-  };
+
   render() {
     const { loading, items, error } = this.props.data;
     let filtered = [];
