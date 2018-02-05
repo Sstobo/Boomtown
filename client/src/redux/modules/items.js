@@ -116,7 +116,7 @@ export default (
         
       
       };
-      console.log("filter" , this.state.itemsFilter)
+     
     }
     default:
       return state;

@@ -23,7 +23,7 @@ export default function (
       case UPDATE_AUTH_STATE:
         return {authenticated: action.payload};
       case TOGGLE_USER_LOADING:
-      return {... state, userLoading: action.payload}
+      return {...state, userLoading: action.payload}
         default: 
       return state;
     }

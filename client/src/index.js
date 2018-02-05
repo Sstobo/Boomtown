@@ -16,7 +16,7 @@ import Items from "./containers/Items";
 import NotFound from "./containers/NotFound";
 import { Provider } from "react-redux";
 import { ApolloProvider } from "react-apollo";
-import { firebaseApp, firebaseAuth} from "./config/firebaseConfig"
+import { firebaseAuth} from "./config/firebaseConfig"
 import { client } from "./config/apolloClient";
 import { updateAuthState, userLoading } from './redux/modules/auth'
 
